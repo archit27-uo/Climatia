@@ -1,6 +1,8 @@
+import 'package:climatica/screens/location_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:climatica/service/location.dart';
-
+import 'package:climatica/service/networking.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class LoadingScreen extends StatefulWidget {
 
@@ -13,27 +15,41 @@ class _LoadingScreenState extends State<LoadingScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getLocation();
+    getLocationData();
   }
- void getLocation() async {
+  late double lat;
+  late double lon;
+ void getLocationData() async {
    Location L = Location();
    await L.getCurrentLocation();
-   print(L.latitude);
-   print(L.longitude);
+   lat = L.latitude;
+   lon = L.longitude;
+   // print(lat);
+   // print(lon);
    print('initstate initiated');
+
+   NetworkHelper networkHelper = NetworkHelper('https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=6b60eeea441d8f7768e627144409cf08&units=metric');
+
+   var weatherData =  await networkHelper.getData();
+
+    Navigator.push(context, MaterialPageRoute(builder: (context){
+      return LocationScreen(locationWeatherData: weatherData,);
+    }));
+
+   // print(temperature);
+   // print(id);
+   // print(cityName);
  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            //Get the current location
-            //getPermission();
-
-          },
-          child: Text('Get Location'),
-        ),
+          child: SpinKitThreeBounce(
+            color: Colors.white,
+            size: 50.0,
+          ),
       ),
     );
   }

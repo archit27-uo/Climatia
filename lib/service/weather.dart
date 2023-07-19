@@ -1,4 +1,14 @@
+import 'package:climatica/service/networking.dart';
+
 class WeatherModel {
+
+  Future<dynamic> getWeatherByCItyName(String cityName) async {
+
+    NetworkHelper networkHelper = NetworkHelper('https://api.openweathermap.org/data/2.5/weather?q=$cityName&appid=6b60eeea441d8f7768e627144409cf08&units=metric');
+    var weatherData =  await networkHelper.getData();
+    return weatherData;
+  }
+
   String getWeatherIcon(int condition) {
     if (condition < 300) {
       return '🌩';
