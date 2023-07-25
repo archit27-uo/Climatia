@@ -28,12 +28,13 @@ class _LoadingScreenState extends State<LoadingScreen> {
    // print(lon);
    print('initstate initiated');
 
-   NetworkHelper networkHelper = NetworkHelper('https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=6b60eeea441d8f7768e627144409cf08&units=metric');
+   NetworkHelper networkHelper = NetworkHelper('https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=6b60eeea441d8f7768e627144409cf08&units=metric', 'http://api.timezonedb.com/v2.1/get-time-zone?key=T7C7DKXT66FT&format=json&by=position&lat=$lat&lng=$lon');
 
    var weatherData =  await networkHelper.getData();
+   var timeData = await networkHelper.getTimeData();
 
     Navigator.push(context, MaterialPageRoute(builder: (context){
-      return LocationScreen(locationWeatherData: weatherData,);
+      return LocationScreen(locationWeatherData: weatherData, timeZoneData:timeData);
     }));
 
    // print(temperature);
