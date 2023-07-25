@@ -7,7 +7,7 @@ const kTempTextStyle = TextStyle(
 
 const kMessageTextStyle = TextStyle(
   fontFamily: 'Spartan MB',
-  fontSize: 20.0,
+  fontSize: 25.0,
 
 );
 
@@ -27,6 +27,7 @@ fontFamily: 'Spartan MB',
 const kButtonTextStyle = TextStyle(
   fontSize: 30.0,
   fontFamily: 'Spartan MB',
+  color: Colors.black54
 );
 
 const kConditionTextStyle = TextStyle(

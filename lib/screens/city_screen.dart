@@ -14,13 +14,13 @@ class _CityScreenState extends State<CityScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        // decoration: BoxDecoration(
-        //   image: DecorationImage(
-        //     image: AssetImage('images/city_background.jpg'),
-        //     fit: BoxFit.cover,
-        //   ),
-        // ),
-       // constraints: BoxConstraints.expand(),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('images/city1.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+       constraints: BoxConstraints.expand(),
         child: SafeArea(
           child: Column(
             children: <Widget>[
@@ -33,6 +33,7 @@ class _CityScreenState extends State<CityScreen> {
                   child: Icon(
                     Icons.arrow_back_ios,
                     size: 50.0,
+                    color: Colors.grey.shade800,
                   ),
                 ),
               ),
@@ -41,8 +42,10 @@ class _CityScreenState extends State<CityScreen> {
                 child: TextField(
                     decoration: InputDecoration(
                       hintText: 'Enter City',
+                      border: OutlineInputBorder(),
                     ),
-                  onSubmitted: (value){
+
+                  onChanged: (value){
                       cityName=value;
                       print(value);
                   },

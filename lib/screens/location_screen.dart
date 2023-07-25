@@ -102,6 +102,7 @@ class _LocationScreenState extends State<LocationScreen> {
                       child: Icon(
                         Icons.near_me,
                         size: 50.0,
+                        color: Colors.blueGrey,
                       ),
                     ),
                     Text(
@@ -128,6 +129,7 @@ class _LocationScreenState extends State<LocationScreen> {
                       child: Icon(
                         Icons.location_city,
                         size: 50.0,
+                          color: Colors.blueGrey,
                       ),
                     ),
                   ],
@@ -142,7 +144,7 @@ class _LocationScreenState extends State<LocationScreen> {
                         Container(
                           margin: EdgeInsets.only(top: 110),
                           child: Text(
-                            "$dateTime",
+                            "${dateTime.substring(10,16)}",
                             style: kMessageTextStyle,
                           ),
 
@@ -186,7 +188,7 @@ class _LocationScreenState extends State<LocationScreen> {
                             ),
                             margin: EdgeInsets.only(top:45.0),
                             decoration: BoxDecoration(
-                                color: Colors.white,
+                                color: Color(0xFFEEEDED),
                                 borderRadius: BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25) )
                             ),
                           ),
