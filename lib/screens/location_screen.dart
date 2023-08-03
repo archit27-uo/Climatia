@@ -78,18 +78,20 @@ class _LocationScreenState extends State<LocationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Container(
+        child: Material(
+          elevation: 100,
+          child: Container(
 
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(imageLink),
-              fit: BoxFit.cover,
-              colorFilter: ColorFilter.mode(
-                  Colors.white.withOpacity(0.8), BlendMode.dstATop),
+            decoration: BoxDecoration(
+              
+              image: DecorationImage(
+                image: AssetImage(imageLink),
+                fit: BoxFit.cover,
+                colorFilter: ColorFilter.mode(
+                    Colors.white.withOpacity(0.8), BlendMode.dstATop),
+              ),
             ),
-          ),
-          constraints: BoxConstraints.expand(),
-          child: SafeArea(
+            constraints: BoxConstraints.expand(),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -137,12 +139,11 @@ class _LocationScreenState extends State<LocationScreen> {
                 Expanded(
                   child: Center(
                     child: Column(
-
-                     //mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       //crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Container(
-                          margin: EdgeInsets.only(top: 110),
+                         // margin: EdgeInsets.only(top: 110),
                           child: Text(
                             "${dateTime.substring(10,16)}",
                             style: kMessageTextStyle,
@@ -186,7 +187,7 @@ class _LocationScreenState extends State<LocationScreen> {
                                 CardRowTiles(fieldName1:'MIN TEMP',fieldValue1: temp_min,fieldName2: 'MAX TEMP',fieldValue2: temp_max,)
                               ],
                             ),
-                            margin: EdgeInsets.only(top:45.0),
+
                             decoration: BoxDecoration(
                                 color: Color(0xFFEEEDED),
                                 borderRadius: BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25) )
