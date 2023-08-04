@@ -13,14 +13,14 @@ const kMessageTextStyle = TextStyle(
 
 const kCardTextStyle = TextStyle(
   fontSize: 16.0,
-  color: Colors.indigo,
+  color: Color(0xFF003366),
   fontFamily: 'Spartan MB',
 );
 
 const kCardValueStyle = TextStyle(
   fontSize: 27.0,
   fontWeight: FontWeight.w500,
-  color: Colors.indigo,
+  color: Color(0xFF003366),
 fontFamily: 'Spartan MB',
 );
 

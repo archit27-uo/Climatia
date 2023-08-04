@@ -42,6 +42,7 @@ class _LocationScreenState extends State<LocationScreen> {
   late String cloud;
   late String temp_min;
   late String temp_max;
+  int temp_val = 38;
  // print(dDay.timeZoneOffset);
   void updateUiData(dynamic weatherData, dynamic timeDateData){
     setState(() {
@@ -154,44 +155,57 @@ class _LocationScreenState extends State<LocationScreen> {
                           '$temperature°',
                           style: kTempTextStyle,
                         ),
-                        Expanded(
+                        Text(
+                          'Feels like 16°'
+                        ),
+                        Divider(
+                          color: Colors.white60,
+                          thickness: 1.4,
+                          indent: 0,
+                          endIndent: 0,
+                        ),
+                        Container(
+                         child :Row(
+                           children: [
+                             cardtile(temp_val: temp_val)
+                           ],
+                         )
+                        ),
+                        Container(
 
-                          child: Container(
+                          child: Column(
+                           crossAxisAlignment: CrossAxisAlignment.stretch,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
 
-                            child: Column(
-                             crossAxisAlignment: CrossAxisAlignment.stretch,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
+                              CardRowTiles(fieldName1:'SUNRISE',fieldValue1: sunrise,fieldName2: 'SUNSET',fieldValue2: sunset,),
+                              Divider(
+                                color: Colors.black45,
+                                thickness: 2,
+                                indent: 12,
+                                endIndent: 12,
+                              ),
+                              CardRowTiles(fieldName1:'PRESSURE',fieldValue1: pressure,fieldName2: 'HUMIDITY',fieldValue2: humidity,),
+                              Divider(
+                                color: Colors.black45,
+                                thickness: 2,
+                                indent: 12,
+                                endIndent: 12,
+                              ),
+                              CardRowTiles(fieldName1:'WIND SPEED',fieldValue1: windSpeed,fieldName2: 'CLOUD',fieldValue2: cloud,),
+                              Divider(
+                                color: Colors.black45,
+                                thickness: 2,
+                                indent: 12,
+                                endIndent: 12,
+                              ),
+                              CardRowTiles(fieldName1:'MIN TEMP',fieldValue1: temp_min,fieldName2: 'MAX TEMP',fieldValue2: temp_max,)
+                            ],
+                          ),
 
-                                CardRowTiles(fieldName1:'SUNRISE',fieldValue1: sunrise,fieldName2: 'SUNSET',fieldValue2: sunset,),
-                                Divider(
-                                  color: Colors.black45,
-                                  thickness: 2,
-                                  indent: 12,
-                                  endIndent: 12,
-                                ),
-                                CardRowTiles(fieldName1:'PRESSURE',fieldValue1: pressure,fieldName2: 'HUMIDITY',fieldValue2: humidity,),
-                                Divider(
-                                  color: Colors.black45,
-                                  thickness: 2,
-                                  indent: 12,
-                                  endIndent: 12,
-                                ),
-                                CardRowTiles(fieldName1:'WIND SPEED',fieldValue1: windSpeed,fieldName2: 'CLOUD',fieldValue2: cloud,),
-                                Divider(
-                                  color: Colors.black45,
-                                  thickness: 2,
-                                  indent: 12,
-                                  endIndent: 12,
-                                ),
-                                CardRowTiles(fieldName1:'MIN TEMP',fieldValue1: temp_min,fieldName2: 'MAX TEMP',fieldValue2: temp_max,)
-                              ],
-                            ),
-
-                            decoration: BoxDecoration(
-                                color: Color(0xFFEEEDED),
-                                borderRadius: BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25) )
-                            ),
+                          decoration: BoxDecoration(
+                              color: Color(0xFFEEEDED),
+                              borderRadius: BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25) )
                           ),
                         )
                       ],
@@ -202,6 +216,45 @@ class _LocationScreenState extends State<LocationScreen> {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class cardtile extends StatelessWidget {
+  const cardtile({
+    super.key,
+    required this.temp_val,
+  });
+
+  final int temp_val;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 12),
+      child: Container(
+
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20 , horizontal: 8),
+          child: Text(
+            "$temp_val°",
+            style: TextStyle(
+                color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 17,
+            ),
+          ),
+
+        ),
+        decoration: BoxDecoration(
+          border: Border.all(
+            width: 1,
+            color: Colors.white70,
+          ),
+          borderRadius: BorderRadius.vertical(top: Radius.circular(25), bottom: Radius.circular(25) ),
+
         ),
       ),
     );
@@ -229,9 +282,9 @@ class CardRowTiles extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.all(6),
+            padding: const EdgeInsets.all(8),
             child: Container(
-              margin: EdgeInsets.only(top: 1, left: 30 ),
+              margin: EdgeInsets.only(top: 3, left: 30 ),
               child: Column(
                 children: [
                   Text(
