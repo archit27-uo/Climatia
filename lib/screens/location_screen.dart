@@ -25,6 +25,7 @@ class _LocationScreenState extends State<LocationScreen> {
     }
     print('init complete');
   }
+  var cardRow = <Widget>[];
   WeatherModel weatherModel = WeatherModel();
   late double timelat;
   late double timelon;
@@ -53,25 +54,27 @@ class _LocationScreenState extends State<LocationScreen> {
         return;
       }
 
-      temp = weatherData['main']['temp'];
+      temp = weatherData['list'][0]['main']['temp'];
       temperature = temp.toInt();
-      id = weatherData['weather'][0]['id'];
-      cityName = weatherData['name'];
-      int tempsunrise = weatherData['sys']['sunrise'];
+      id = weatherData['list'][0]['weather'][0]['id'];
+      cityName = weatherData['city']['name'];
+      int tempsunrise = weatherData['city']['sunrise'];
       sunrise = DateTime.fromMillisecondsSinceEpoch(tempsunrise * 1000).toString().substring(10,16);
-      int tempsunset = weatherData['sys']['sunset'];
+      int tempsunset = weatherData['city']['sunset'];
       sunset = DateTime.fromMillisecondsSinceEpoch(tempsunset * 1000).toString().substring(10,16);
-      pressure = weatherData['main']['pressure'].toString();
-      humidity = weatherData['main']['humidity'].toString();
+      pressure = weatherData['list'][0]['main']['pressure'].toString();
+      humidity = weatherData['list'][0]['main']['humidity'].toString();
           imageLink = weatherModel.getWeatherIcon(id);
-      windSpeed = weatherData['wind']['speed'].toString();
-      cloud = weatherData['clouds']['all'].toString();
-      temp_max = weatherData['main']['temp_max'].toString();
-      temp_min = weatherData['main']['temp_min'].toString();
+      windSpeed = weatherData['list'][0]['wind']['speed'].toString();
+      cloud = weatherData['list'][0]['clouds']['all'].toString();
+      temp_max = weatherData['list'][0]['main']['temp_max'].toString();
+      temp_min = weatherData['list'][0]['main']['temp_min'].toString();
       //timeZoneOffset = weatherData['timezone'];
       dateTime = timeDateData['formatted'];
 
       print("updateui");
+
+      cardRow.add(cardtile(temp_val: temp_val));
     });
 
   }
@@ -166,9 +169,7 @@ class _LocationScreenState extends State<LocationScreen> {
                         ),
                         Container(
                          child :Row(
-                           children: [
-                             cardtile(temp_val: temp_val)
-                           ],
+                           children: cardRow,
                          )
                         ),
                         Container(
