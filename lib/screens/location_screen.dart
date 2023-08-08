@@ -21,7 +21,7 @@ class _LocationScreenState extends State<LocationScreen> {
     updateUiData(widget.locationWeatherData, widget.timeZoneData);
     if (widget.locationWeatherData != null) {
       print('here');
-     imageLink = weatherModel.getWeatherIcon(widget.locationWeatherData['weather'][0]['id']);
+     imageLink = weatherModel.getWeatherIcon(widget.locationWeatherData['list'][0]['weather'][0]['id']);
     }
     print('init complete');
   }
@@ -45,6 +45,19 @@ class _LocationScreenState extends State<LocationScreen> {
   late String temp_max;
   int temp_val = 38;
  // print(dDay.timeZoneOffset);
+
+  void get3HourWeatherData(dynamic weatherData){
+    if(cardRow.isNotEmpty) {
+      cardRow.removeRange(0, 9);
+    }
+      null;
+      List<double> hourTemperature = [];
+      for(int i=0; i<10; i++){
+        hourTemperature.add(weatherData['list'][i]['main']['temp']);
+        cardRow.add(cardtile(temp_val: hourTemperature[i].toInt()));
+      }
+
+  }
   void updateUiData(dynamic weatherData, dynamic timeDateData){
     setState(() {
       if(weatherData==null){
@@ -74,7 +87,7 @@ class _LocationScreenState extends State<LocationScreen> {
 
       print("updateui");
 
-      cardRow.add(cardtile(temp_val: temp_val));
+      get3HourWeatherData(weatherData);
     });
 
   }
@@ -123,8 +136,8 @@ class _LocationScreenState extends State<LocationScreen> {
                         }));
                         if(typedCityName!=null) {
                           var weatherData = await WeatherModel().getWeatherByCItyName(typedCityName);
-                          timelat = weatherData['coord']['lat'];
-                          timelon = weatherData['coord']['lon'];
+                          timelat = weatherData['city']['coord']['lat'];
+                          timelon = weatherData['city']['coord']['lon'];
                           var timeData = await WeatherModel().getDataTimeByCItyName(timelat, timelon);
                          updateUiData(weatherData,timeData);
                           print(typedCityName);
@@ -167,11 +180,14 @@ class _LocationScreenState extends State<LocationScreen> {
                           indent: 0,
                           endIndent: 0,
                         ),
-                        Container(
-                         child :Row(
-                           children: cardRow,
-                         )
+                        SizedBox(
+                          height: 90,
+                          child: ListView(
+                             scrollDirection: Axis.horizontal,
+                             children: cardRow,
+                           ),
                         ),
+
                         Container(
 
                           child: Column(
