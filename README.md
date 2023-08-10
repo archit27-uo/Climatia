@@ -48,5 +48,5 @@ Step-by-step instructions to run the project.
 
 1. Clone this repository: `https://github.com/archit27-uo/Climatia.git`
 2. Navigate to the project directory: `cd Climatica`
-3. Run app: flutter pub get
-4. flutter run
+3. Get Flutter dependencies: `flutter pub get`
+4. Run flutter app: `flutter run`
