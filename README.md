@@ -22,7 +22,7 @@ The Weather App is a convenient and reliable tool that provides up-to-date weath
 - **Responsive Design:** Access the app on various devices, including desktops, tablets, and smartphones, with a responsive layout that adapts to different screen sizes.
 
 
-##Screenshots
+## Screenshots
 
 
 ## Getting Started
