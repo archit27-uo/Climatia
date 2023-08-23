@@ -23,6 +23,8 @@ The Weather App is a convenient and reliable tool that provides up-to-date weath
 
 
 ## Screenshots
+![Screenshot (261)](https://github.com/archit27-uo/Climatia/assets/75472988/13603753-5170-4100-b98f-4dc38bc67430)
+![Screenshot (260)](https://github.com/archit27-uo/Climatia/assets/75472988/ccd3df17-fd42-46e0-b7bd-9b50e857d589)
 
 
 ## Getting Started
